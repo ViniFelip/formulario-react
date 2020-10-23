@@ -14,7 +14,7 @@ function Formulario() {
     function onChangeDois(evento) {
         alteraPessoa({
             ...pessoa,
-            DataNascimento: evento.target.value
+            dataNascimento: evento.target.value
         })
     }
 
@@ -52,7 +52,7 @@ function Formulario() {
     function onChangeOito(evento) {
         alteraPessoa({
             ...pessoa,
-            Trabalha: evento.target.checked
+            trabalha: evento.target.value === 'sim'
         })
     }
 
@@ -60,29 +60,34 @@ function Formulario() {
 
 
     return <>
-    <h1>Coloque seus dados</h1>
-    <form>
+        <h1>Coloque seus dados</h1>
+        <form>
 
-        Nome:<input onChange={onChangeUm} type='text' name='nome' id='1' /> <br></br>
-        Data de Nascimento: <input onChange={onChangeDois} type='date' name='DataNascimento' id='2' /><br></br>
-        Telefone:<input onChange={onChangetres} type='text' name='Telefone' id='3' /><br></br>
-        E-mail<input onChange={onChangeQuatro} type='text' name='Email' id='4' /><br></br>
-        Cep<input onChange={onChangeCinco} type='text' name='cep' id='5' /><br></br>
-        Cidade<input onChange={onChangeSeis} type='text' name='cidade' id='6' /><br></br>
-        Estado<input onChange={onChangeSete} type='text' name='estado' id='7' /><br></br>
-        trabalha:<input onChange={onChangeOito} type='Checkbox' name='Trabalha' id='8' /><br></br>
+            <div><input onChange={onChangeUm} type='text' placeholder='Nome' name='nome' id='a1' /></div>
+            <div><input onChange={onChangeDois} type='date'  name='dataNascimento' id='a2' /></div>
+            <div><input onChange={onChangetres} type='tel' placeholder='Telefone' name='Telefone' id='a3' /></div>
+            <div><input onChange={onChangeQuatro} type='email' placeholder='E-mail' name='Email' id='a4' /></div>
+            <div><input onChange={onChangeCinco} type='text' placeholder='CEP' name='cep' id='a5' /></div>
+            <div><input onChange={onChangeSeis} type='text' placeholder='Cidade' name='cidade' id='a6' /></div>
+            <div><input onChange={onChangeSete} type='text' placeholder='Estado' maxlength="2" name='estado' id='a7' /></div>
+            <div>
+                <label>Trabalhando?</label>
+            Sim<input onChange={onChangeOito} type='radio' name='trabalha' value='sim' />
+            Não<input onChange={onChangeOito} type='radio' name='trabalha' value='não' />
+            </div>
 
+            <p>nome: {pessoa.nome}</p>
+            <p>Data de Nascimento: {pessoa.datanascimento}</p>
+            <p>Telefone: {pessoa.telefone}</p>
+            <p>E-mail: {pessoa.email}</p>
+            <p>Cep: {pessoa.cep}</p>
+            <p>Cidade: {pessoa.cidade}</p>
+            <p>Estado: {pessoa.estado}</p>
 
-        <p>nome:{pessoa.nome}</p>
-        <p>Data de Nascimento:{pessoa.DataNascimento}</p>
-        <p>Telefone:{pessoa.Telefone}</p>
-        <p>E-mail:{pessoa.Email}</p>
-        <p>Cep:{pessoa.cep}</p>
-        <p>Cidade:{pessoa.cidade}</p>
-        <p>Estado:{pessoa.estado}</p>
+            <p>{pessoa.nome} está {pessoa.trabalha ? 'trabalhando!' : 'procurando emprego!'}</p>
 
-    </form>
-</>
+        </form>
+    </>
 }
 
 
